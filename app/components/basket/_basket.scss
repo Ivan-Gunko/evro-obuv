@@ -1,0 +1,224 @@
+.basket	{
+	min-height: 400px;
+
+	h3 {
+		font-size: 24px;
+		font-weight: bold;
+	}
+
+	@include e('thead') {
+		font-size: 12px;
+		margin: 15px 0;
+	}
+
+	@include e('col') {
+		@extend .inline-block-vtop;
+		text-align: center;
+
+		@include m('img') {width: 180px;}
+		@include m('name') {width: 235px; text-align: left;}
+		@include m('price') {width: 175px;}
+		@include m('quantity') {width: 160px;}
+		@include m('cost') {width: 130px;}
+		@include m('sale') {
+			position: relative;
+			a {
+				text-decoration: none;
+				border-bottom: 1px dotted $clr-default;
+				font-size: 12px;
+				font-weight: 500;
+				&:hover,
+				&:focus {
+					& + .basket__tooltip {display: block;}
+				}
+    		}
+		}
+	}
+
+	@include e('tooltip') {
+		background-color: #fff;
+		border-radius: 5px;
+		border: 1px solid $clr-gray-default;
+		bottom: 35px;
+		box-sizing: border-box;
+		display: none;
+		height: 110px;
+		left: -70%;
+		padding: 15px;
+		position: absolute;
+		text-align: left;
+		width: 270px;
+		z-index: 30;
+		&:after {
+			background-color: #fff;
+			border-bottom: 1px solid $clr-gray-default;
+			border-right: 1px solid $clr-gray-default;
+			bottom: -17px;
+			content: '';
+			left: 40%;
+			padding: 15px;
+			position: absolute;
+			transform: rotate(45deg);
+		}
+
+		span {
+			font-size: 14px;
+			font-weight: bold;
+			color: $clr-red;
+		}
+
+		p {
+			font-style: italic;
+			font-size: 12px;
+			padding: 5px 0 15px;
+			font-weight: 500;
+		}
+
+	}
+
+	@include e('prod') {
+		border: 1px solid $clr-gray-default;
+		border-radius: 5px;
+		position: relative;
+		padding: 17px 0;
+		margin: 10px 0;
+
+		@include m('close') {
+			background:transparent url('/images/icon-sl.png') -80px 0 no-repeat;
+			position: absolute;
+			height: 16px;
+			width: 16px;
+			left: 20px;
+			top: 63px;	
+		}
+
+		.basket__col {
+			@include m('img') {}
+			@include m('name') {
+				padding: 17px 0;
+				h4 {
+					font-size: 18px;
+					font-weight: bold;
+				}
+				span {
+					font-size: 12px;
+				}
+				.size {
+					font-weight: bold;
+					padding: 0 3px;
+				}
+			}
+			@include m('price') {
+				padding: 20px 0;
+				font-size: 18px;
+				font-weight: bold; 
+			}
+			@include m('quantity') {
+				padding: 10px 0;
+				input[type="text"] {
+					width: 80px;
+					font-size: 18px;
+					font-weight: bold;
+					color: #000;
+					text-align: center;
+				}
+			}
+			@include m('cost') {
+				padding: 20px 0;
+				font-size: 18px;
+				font-weight: bold;
+				color: $clr-red;
+			}
+			@include m('sale') {
+				padding: 20px 0 20px 5px;
+    			box-sizing: border-box;
+    			font-weight: bold;
+			}
+		}
+	}
+
+	@include e('count') {
+		text-decoration: none;
+		font-size: 24px;
+		font-weight: bold;
+		padding: 0 5px;
+
+	}
+
+	@include e('img') {
+		    border: 1px solid $clr-gray-default;
+		    border-radius: 2px;
+			width: 103px;
+			height: 103px;
+			margin-left: 55px;
+	}
+
+	@include e('delete') {
+		display: none;
+	}
+}
+
+.sale-box {
+	font-size: 12px;
+	color: $clr-default;
+	font-weight: 500;
+	font-style: italic;
+	line-height: 1.8em;
+}
+
+.summ {
+	font-size: 30px;
+	font-weight: bold;
+	margin: 30px 0;
+
+	@include e('old') {
+		font-size: 24px;
+		font-weight: 500;
+		text-decoration: line-through;
+	}
+
+	@include e('new') {
+		color: $clr-red;
+	}
+
+	@include e('economy') {
+		font-size: 12px;
+		padding: 10px 0 20px;
+		color: $clr-gray;
+	}
+
+	.button {
+		font-size: 12px;
+	}
+}
+.no-sale-box {
+	position: relative;
+}
+
+.get-card { 
+	position: relative;
+	font-size: 14px;
+	label {
+		padding-left: 40px;
+		font-size: 13px;
+	}
+
+	input[type="checkbox"] + label:before {
+		background-color: #fff;
+		border: 2px solid $clr-default; 
+		content: '';
+		cursor:pointer;
+		height: 26px;
+		left: 0;
+		position: absolute;
+		width: 26px;
+		top: 0;
+		box-sizing: border-box;
+	}
+
+	input[type="checkbox"]:checked + label:before {
+		background:transparent url('/images/icon-sl.png') -261px 3px no-repeat;
+	}
+}
+
+

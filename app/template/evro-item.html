@@ -1,0 +1,55 @@
+@@include('../components/head/head.html')
+
+<body>
+
+@@include('../components/noscript/noscript.html')
+
+<div class="container">
+ 
+@@include('../components/header/header.html', {
+	"login" : false
+})
+
+@@include('../components/sliders/slider-row.html')
+
+@@include('../components/breadcrumbs/breadcrumbs.html', {
+	"title" : "Туфли",
+	"first" : "Главная",
+	"second" : "Женская обувь",
+	"third" : "Туфли"
+})
+
+
+<div class="content">
+
+@@include('../components/item/item.html')
+
+</div>
+
+@@include('../components/advantages/adv-vertical.html')	
+
+@@include('../components/availability/availability.html')
+
+@@include('../components/sliders/slider-goods-item.html')
+
+@@include('../components/footer/footer.html')
+        
+</div>
+
+@@include('../components/scripts/scripts.html')
+
+<script>
+	$('.slider-goods').sliderShop({
+	        caseLimit: 3,
+	        category: 'false',
+	        autoHeight: 'false',
+	        spaceSection: 'auto'
+	    });
+
+	$('div.zoomer').zoomer();
+</script>
+
+
+
+</body>
+</html>
