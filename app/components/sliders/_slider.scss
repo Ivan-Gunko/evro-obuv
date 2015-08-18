@@ -1,0 +1,28 @@
+.slider {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	height: 160px;
+	@extend .slider-main;
+	 ul {
+	 	height: 160px;
+	 }
+	 li {
+	 	box-sizing: border-box;
+    	float: left;
+	 }
+
+	@include e('link') {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		background:transparent url('/images/icon-sl.png') 0 0 no-repeat;
+		top: 50%;
+		right: 0;
+
+		@include m('next') {
+			background-position: 0 0;
+			left: 0;
+		}
+	}
+}

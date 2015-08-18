@@ -409,7 +409,7 @@
 <div class="filter">
 	<form action="#">
 		<div class="filter__cont filter__cont--size filter-label">
-			<span>Размер: 36 - 36,5</span>
+			Размер:<span> 36 - 36,5</span>
 			<div class="filter__drop filter__drop--size">
 				<select placeholder="Категория" name="select1" multiple="multiple" id="opt-category" hidden>
 	                <option title="size" name="1">36</option>
@@ -427,7 +427,7 @@
 		</div>
 
 		<div class="filter__cont filter__cont--heel filter-label">
-			<span>Высота каблука: любая</span>
+			Высота каблука:<span> любая</span>
 			<div class="filter__drop filter__drop--heel">
 				<select placeholder="Категория" name="select1" multiple="multiple" id="opt-category" hidden>
 	                <option title="heel" name="1">2-4 см.</option>
@@ -448,7 +448,7 @@
 		</div>
 
 		<div class="filter__cont filter__cont--material filter-label">
-			<span>Материал: любой</span>
+			Материал:<span> любой</span>
 			<div class="filter__drop filter__drop--material">
 				<select placeholder="Категория" name="select1" multiple="multiple" id="opt-category" hidden>
 	                <option title="material" name="1">Кожа</option>
@@ -460,7 +460,7 @@
 			</div>
 		</div>
 		<div class="filter__cont filter__cont--brand filter-label">
-			<span>Бренд: любой</span>
+			Бренд:<span> любой</span>
 			<div class="filter__drop filter__drop--brand">
 				<select placeholder="Категория" name="select1" multiple="multiple" id="opt-category" hidden>
 	                <option title="brand" name="1">Tamaris</option>
@@ -742,6 +742,32 @@
 
 
 
+
+<script>
+	$('.filter__cont--material').selectToList();
+	$('.filter__cont--heel').selectToList();
+	$('.filter__cont--brand').selectToList();
+	$('.filter__cont--size').selectToList();
+	$('.filter__cont--cost').selectToList({
+    	selection : false
+	});
+
+	var inp = $('.enter-cost');
+	
+	$('#range__slider').ionRangeSlider({
+	    type: "double",
+	    min: 2000,
+	    max: 11000,
+	    from: 3000,
+	    to: 10000,
+	    step: 10,
+	    force_edges: true,
+	    hide_min_max: true,
+	    onChange: function (data) {
+	        inp.html(data.from + '-' + data.to);
+    	}
+	});
+</script>
 
 </body>
 </html>

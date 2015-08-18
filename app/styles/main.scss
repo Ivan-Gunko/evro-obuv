@@ -18,6 +18,7 @@
 /*vendor*/
 // @import "vendor/font-awesome/font-awesome";
 @import "vendor/ion.rangeSlider";
+@import "vendor/jquery.custom-scrollbar";
 @import "../scripts/fancybox/jquery.fancybox.css";
 
 
@@ -29,6 +30,7 @@
 @import "../components/catalog/catalog";
 @import "../components/news/news";
 @import "../components/sliders/slider-main";
+@import "../components/sliders/slider";
 @import "../components/sliders/carousel-brand";
 @import "../components/mail/mail-form";
 @import "../components/footer/footer";
@@ -51,6 +53,7 @@
 @import "../components/shops/shops";
 @import "../components/txt/txt";
 @import "../components/evro-order/evro-order";
+@import "../components/popup/popup";
 
 /* layouts */
 @import "layouts/details";
@@ -160,13 +163,14 @@ visibility: hidden;
     visibility: hidden;
 }
 
-
+input[type="password"],
 input[type="text"] {
     height: 40px;
     width: 200px;
 }
 
-textarea, 
+textarea,
+input[type="password"],
 input[type="text"] {
     border-radius: 8px;
     border: 1px solid $clr-gray-default;
@@ -174,7 +178,8 @@ input[type="text"] {
     box-sizing: border-box;
 }
 
-textarea:focus, 
+textarea:focus,
+input[type="password"]:focus,
 input[type="text"]:focus {
     border: 1px solid $clr-default;
     outline: 0;

@@ -103,13 +103,10 @@ if (typeof Object.create !== 'function') {
                             .text($targetItem.prevAll().length + this.options.caseLimit + ' / ' + this.swither.length)
                     }
 
-                    // console.log($targetItem.prevAll().length + this.options.caseLimit);
-
                     switch (this.options.animation) {
 
                         case 'slide':
                             this.wrapper.animate({left : - newPosition});
-                            // console.log($targetItem.position());
                             break;
 
                         case 'hide-show':
@@ -132,21 +129,9 @@ if (typeof Object.create !== 'function') {
             
             var slider = Object.create( Slider );
             slider.init( options, this );
-            // console.log(slider);
         });
 
     }; 
-
-   //  $.fn.sliderShop.constructor.prototype.prot = { 
-   //      animHide: function() {
-   //          console.log('animHide');
-   //          return this
-   //     },
-   //     animClose: function() {
-   //          console.log('animClose');
-   //          return this
-   //     }
-   // }
 
    $.fn.sliderShop.options = {
         caseLimit: 4, //кол-во товаров в витрине
@@ -154,10 +139,6 @@ if (typeof Object.create !== 'function') {
         animation: 'slide', //тип анимации
         count: false // счетчик слайдов
     };
-
-
-    
-
 
 })( jQuery, window, document );
 
