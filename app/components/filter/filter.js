@@ -1,13 +1,16 @@
 var SelectToList = {
         init: function (options, elem) {
 
-            var optGroup, dropList, main, scroll,
+            var optGroup, dropList, main, scroll, separator, wrap,
                 self = this;
 
             self.elem = elem;
             self.options = $.extend({}, $.fn.selectToList.options, options);
             self.optGroup = $(self.elem).find('select option');
             self.dropList = $(self.elem).find('.filter__drop');
+            self.button = $(self.elem).find('button[type="submit"]');
+
+            if(self.options.button == true) {self.button[0].disabled=true};
 
             if (self.options.title) {
                 self.main = $(self.elem).find('.filter-label');
@@ -24,10 +27,14 @@ var SelectToList = {
 
         prepareList: function () {
             var self = this,
-                ul;
+                ul, separator, isChoise;
 
             if(this.options.selection === "multi") {
-                ul = $('<ul/>').prependTo(this.dropList);
+
+                this.wrapper = $('<div/>').prependTo(this.dropList).addClass('filter__wrap');
+
+                ul = $('<ul/>').prependTo(this.wrapper);
+
                 this.optGroup.each(function(index, el) {
                     ul.append('<li><input type="checkbox" name="' 
                         + $(this).attr('title') + index + '" id="' 
@@ -36,22 +43,42 @@ var SelectToList = {
                         + $(this).html() + '</label></li>');
                 });
 
+                if(this.options.choice == true) {
+                    separator = $('<div/>').addClass('separator').prependTo(this.wrapper),
+                    isChoise = $('<ul/>').prependTo(this.wrapper)
+                }
+
+
                  $(this.elem).find('input[type="checkbox"] + label').on('click', function () {
-                    var inText = ' ';
-                    console.log($(self.elem).find('input[type="checkbox"]:checked + label'));
+                    var inText = '',
+                        fThis = this;
 
                     setTimeout(function () {
-                        var check = $(self.elem).find('input[type="checkbox"]:checked + label').each(function(index, el) {
+                        var check = $(self.elem).find('input[type="checkbox"]:checked + label').each(function() {
 
                         inText += $(this).text() + ' ';
 
                         });
 
+                        if(self.options.button == true){
+                            inText.length ? self.button[0].disabled=false : self.button[0].disabled=true;
+                        }
+                       
+
                         if(inText.length > 15) {
-                            inText = ' выбрано:' + check.length
+                            inText = ' ' + check.length
                         }
 
                         $(self.main).find('span').html(inText);
+
+                        if(self.options.choice == true) { 
+
+                        $(fThis).prev('input[type="checkbox"]').prop("checked")
+
+                               ? isChoise.append($(fThis).parent('li'))
+                               : ul.append($(fThis).parent('li'))
+                            }
+
                     },200)
                 })
 
@@ -72,22 +99,22 @@ var SelectToList = {
                 })
 
             }
+            
             this.dropList.innerWidth( $(this.main).innerWidth() );
 
-            if(this.options.scroll && this.dropList.show().children('ul').height() > 150) {
-                ul.wrap('<div class="scroll__wrapper"></div>');
+            if(this.options.scroll && this.dropList.show().height() > 350) {
 
-                this.dropList
-                    .children('div')
-                        .css('min-height', 150)
-                            .customScrollbar({
-                                skin : 'modern-skin',
-                                updateOnWindowResize : true,
-                                vScroll: true
-                            });
+                this.wrapper
+                    .css('min-height', 300)
+                        .customScrollbar({
+                            skin : 'modern-skin',
+                            updateOnWindowResize : true,
+                            vScroll: true
+                        });
             };
 
             this.dropList.hide();
+
         },
 
         dropped: function () {
@@ -129,7 +156,9 @@ $.fn.selectToList.options = {
     // title: false,
     selection : "multi",
     closed: true,
-    scroll : true
+    scroll : true,
+    choice : false, //перемещение ввыбранных чекбоксов наверх
+    button : false
 };
 
 

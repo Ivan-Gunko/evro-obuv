@@ -31,12 +31,16 @@ if (typeof Object.create !== 'function') {
         init: function (options, elem) {
 
             var self = this;
-            var swither, wrapper;
+            var swither, wrapper, cnt;
 
             self.maxScrollPosition = 0;
             self.elem = elem;
 
             self.options = $.extend({}, $.fn.sliderShop.options, options);
+
+            this.wrapper = $(this.elem).find('.slider__wrapper');
+            this.swither = this.wrapper.children().addClass('swither__item'); 
+            this.cnt = this.wrapper.find('.swither__item').length
 
             self.calcConst();
 
@@ -49,6 +53,15 @@ if (typeof Object.create !== 'function') {
                     ? self.toGalleryItem($targetItem.prev())
                     : self.toGalleryItem($targetItem.next());
             });
+
+            if (this.options.timer) {
+                setInterval(function () {
+
+                var $targetItem = $(elem).find('.swither__item--edge');
+                    
+                    self.toGalleryItem($targetItem.next());
+                },this.options.timer)
+            }
         },
 
         calcConst: function () {
@@ -56,8 +69,8 @@ if (typeof Object.create !== 'function') {
                 totalWidth = 0,
                 section = $(this.elem).outerWidth() - 40;
             
-            this.wrapper = $(this.elem).find('.slider__wrapper');
-            this.swither = this.wrapper.children().addClass('swither__item'); 
+            // this.wrapper = $(this.elem).find('.slider__wrapper');
+            // this.swither = this.wrapper.children().addClass('swither__item'); 
 
             var space = this.wrapper.parent().width() - this.swither.outerWidth(true)*this.options.caseLimit,
                 elspace =(this.options.spaceSection === 'auto') 
@@ -117,7 +130,18 @@ if (typeof Object.create !== 'function') {
                             .animate({opacity : 1});
                             break; 
                     } 
+                }else if(this.options.repeat) {
+                
+                    var first = this.swither.removeClass('swither__item--edge').first().addClass('swither__item--edge')
+                    self.toGalleryItem(first)
+               
                 }
+
+            } else if(this.options.repeat) {
+                
+                var first = this.swither.removeClass('swither__item--edge').first().addClass('swither__item--edge')
+                self.toGalleryItem(first)
+               
             }
         } 
     };
@@ -137,7 +161,9 @@ if (typeof Object.create !== 'function') {
         caseLimit: 4, //кол-во товаров в витрине
         spaceSection: 'auto', //расстояние между секциями
         animation: 'slide', //тип анимации
-        count: false // счетчик слайдов
+        count: false, // счетчик слайдов
+        timer: false, //автопереключение
+        repeat: false //показ слайдов по кругу
     };
 
 })( jQuery, window, document );
