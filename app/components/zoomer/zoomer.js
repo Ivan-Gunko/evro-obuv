@@ -31,7 +31,7 @@ if (typeof Object.create !== 'function') {
     var Zoom = {
         init: function (options, elem) {
 
-            var main, tooltip, list, scale, imgTooltip, imgTooltipWidth, imgTooltipHeight,
+            var main, tooltip, list, scale, imgTooltip, imgTooltipWidth, imgTooltipHeight, isBusy,
                 self = this;
 
             self.elem = elem;
@@ -43,10 +43,14 @@ if (typeof Object.create !== 'function') {
             self.prepareImg();
 
             self.main.hover(function() {
-                self.tooltip.fadeIn(400);
+                if(isBusy) { return }
+
+                self.tooltip.fadeIn(300);
                 self.addTooltip();
+
+                isBusy = 1;
             }, function () {
-                self.tooltip.fadeOut(400);
+                self.tooltip.fadeOut(300, function () { isBusy = 0; } );
             });
 
             self.zoomMove();

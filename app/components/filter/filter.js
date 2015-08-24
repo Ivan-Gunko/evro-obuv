@@ -65,24 +65,22 @@ var SelectToList = {
                         }
                        
 
-                        if(inText.length > 15) {
-                            inText = ' ' + check.length
-                        }
+                        if(inText.length > 12) { inText = ' ' + check.length } //кол-во символов в строке
 
                         $(self.main).find('span').html(inText);
 
                         if(self.options.choice == true) { 
 
-                        $(fThis).prev('input[type="checkbox"]').prop("checked")
-
-                               ? isChoise.append($(fThis).parent('li'))
-                               : ul.append($(fThis).parent('li'))
+                            $(fThis).prev('input[type="checkbox"]').prop("checked")
+                                   ? isChoise.append($(fThis).parent('li'))
+                                   : ul.append($(fThis).parent('li'))
                             }
 
                     },200)
                 })
 
             } else if(this.options.selection === "single") {
+
                 ul = $('<ul/>').prependTo(this.dropList);
                 this.optGroup.each(function(index, el) {
                     ul.append('<li><input type="radio" name="' 
@@ -153,12 +151,13 @@ $.fn.selectToList = function (options) {
 };
 
 $.fn.selectToList.options = {
-    // title: false,
-    selection : "multi",
-    closed: true,
+    title: false,
+    selection : "multi", //список "multi" -чекбоксы, "single" - стандартный список на скрытых радиокнопках
+    closed: true, //закрытие списка true - вкл, false - выкл, forsed - закрытие при любом клике
     scroll : true,
     choice : false, //перемещение ввыбранных чекбоксов наверх
-    button : false
+    button : false, 
+    maxHeight : 350 // мкаксимальная высота выпадающего списка
 };
 
 
