@@ -80,8 +80,9 @@ var SelectToList = {
                 })
 
             } else if(this.options.selection === "single") {
+                this.wrapper = $('<div/>').prependTo(this.dropList).addClass('filter__wrap');
 
-                ul = $('<ul/>').prependTo(this.dropList);
+                ul = $('<ul/>').prependTo(this.wrapper);
                 this.optGroup.each(function(index, el) {
                     ul.append('<li><input type="radio" name="' 
                         + $(this).attr('title') + '" id="' 
@@ -100,10 +101,10 @@ var SelectToList = {
             
             this.dropList.innerWidth( $(this.main).innerWidth() );
 
-            if(this.options.scroll && this.dropList.show().height() > 350) {
+            if(this.options.scroll && this.dropList.show().height() > this.options.maxHeight) {
 
                 this.wrapper
-                    .css('min-height', 300)
+                    .css('min-height', this.options.maxHeight - 50)
                         .customScrollbar({
                             skin : 'modern-skin',
                             updateOnWindowResize : true,
