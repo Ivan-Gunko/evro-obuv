@@ -1,4 +1,4 @@
-.adv {
+.inforow {
 	width: 1000px;
     margin: 0 auto;
     text-align: center;
@@ -23,7 +23,7 @@
 	}
 
 	@include e('ico') {
-		background:transparent url('/images/icons-adv.png') 0 0 no-repeat;
+		background:transparent url('/images/icons-inforow.png') 0 0 no-repeat;
 		float: left;
 		height: 36px;
 		margin-right: 10px;
@@ -45,7 +45,7 @@
 		padding-left: 4px;
 		float: right;
 		border-left: 1px solid $clr-gray-midle;
-		.adv__container {
+		.inforow__container {
 			display: block;
 			&:not(:last-child) {
 				margin-bottom: 20px;
