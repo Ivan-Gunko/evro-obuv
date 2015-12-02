@@ -60,37 +60,30 @@
 		border-top: 1px solid $clr-default;
 		border-bottom: 1px solid $clr-default;
 	}
+}
 
-	@include e('table') {
-		display: table;
-		margin: 40px 0;
-	}
-
-	@include e('trow') {
-		line-height: 35px;
-		&:not(:first-child):not(:last-child) {
-			border-bottom: 1px solid $clr-gray-default;	
+.table {
+	& > * > tr {
+		& > td,
+		& > th {
+			border-top: 1px solid $clr-gray-default;
+			line-height: 35px;
+			width: 200px;
+			text-align: center;
 		}
-		&:hover {
-			background-color: $clr-red;
-			color: #fff;
-			cursor: pointer;
-			margin: 0 -50px;
-			padding: 0 50px;
-		}
-
-		@include m('caption') {
+		& > th {
+			padding-left: 20px;
+			vertical-align: bottom;
 			font-weight: bold;
 			line-height: 45px;
 		}
-	}
-
-	@include e('tcell') {
-		padding-left: 20px;
-		display: table-cell;
-		width: 200px;
-		&:last-child {
-			width: 100px;
+		&:first-child > th {
+			border-top: 0;
 		}
+	}
+	& > tbody > tr:hover {
+		background-color: #ff2c29;
+		color: #fff;
+		cursor: pointer;
 	}
 }
